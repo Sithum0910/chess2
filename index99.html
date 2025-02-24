@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chess Game</title>
+  <style>
+    /* Chessboard Styling */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+
+    .chessboard {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(8, 1fr);
+      width: 90vmin; /* Responsive size */
+      height: 90vmin; /* Responsive size */
+      max-width: 500px; /* Limit maximum size */
+      max-height: 500px; /* Limit maximum size */
+      border: 2px solid #333;
+    }
+
+    .square {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 5vmin; /* Responsive font size */
+    }
+
+    .square.light {
+      background-color: #f0d9b5;
+    }
+
+    .square.dark {
+      background-color: #b58863;
+    }
+
+    /* Chess Pieces Styling */
+    .piece {
+      cursor: grab;
+      user-select: none;
+    }
+
+    /* Premium Look Enhancements */
+    .chessboard {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .square:hover {
+      background-color: rgba(255, 255, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="chessboard">
+    <!-- Chessboard Squares and Pieces -->
+    <!-- Row 8 (Black Pieces) -->
+    <div class="square dark">♜</div>
+    <div class="square light">♞</div>
+    <div class="square dark">♝</div>
+    <div class="square light">♛</div>
+    <div class="square dark">♚</div>
+    <div class="square light">♝</div>
+    <div class="square dark">♞</div>
+    <div class="square light">♜</div>
+    <!-- Row 7 (Black Pawns) -->
+    <div class="square light">♟</div>
+    <div class="square dark">♟</div>
+    <div class="square light">♟</div>
+    <div class="square dark">♟</div>
+    <div class="square light">♟</div>
+    <div class="square dark">♟</div>
+    <div class="square light">♟</div>
+    <div class="square dark">♟</div>
+    <!-- Rows 6-3 (Empty Squares) -->
+    <div class="square dark"></div>
+    <div class="square light"></div>
+    <div class="square dark"></div>
+    <div class="square light"></div>
+    <div class="square dark"></div>
+    <div class="square light"></div>
+    <div class="square dark"></div>
+    <div class="square light"></div>
+    <div class="square light"></div>
+    <div class="square dark"></div>
+    <div class="square light"></div>
+    <div class="square dark"></div>
+    <div class="square light"></div>
+    <div class="square dark"></div>
+    <div class="square light"></div>
+    <div class="square dark"></div>
+    <div class="square dark"></div>
+    <div class="square light"></div>
+    <div class="square dark"></div>
+    <div class="square light"></div>
+    <div class="square dark"></div>
+    <div class="square light"></div>
+    <div class="square dark"></div>
+    <div class="square light"></div>
+    <div class="square light"></div>
+    <div class="square dark"></div>
+    <div class="square light"></div>
+    <div class="square dark"></div>
+    <div class="square light"></div>
+    <div class="square dark"></div>
+    <div class="square light"></div>
+    <div class="square dark"></div>
+    <!-- Row 2 (White Pawns) -->
+    <div class="square light">♙</div>
+    <div class="square dark">♙</div>
+    <div class="square light">♙</div>
+    <div class="square dark">♙</div>
+    <div class="square light">♙</div>
+    <div class="square dark">♙</div>
+    <div class="square light">♙</div>
+    <div class="square dark">♙</div>
+    <!-- Row 1 (White Pieces) -->
+    <div class="square dark">♖</div>
+    <div class="square light">♘</div>
+    <div class="square dark">♗</div>
+    <div class="square light">♕</div>
+    <div class="square dark">♔</div>
+    <div class="square light">♗</div>
+    <div class="square dark">♘</div>
+    <div class="square light">♖</div>
+  </div>
+
+  <script>
+    // JavaScript for Drag-and-Drop Functionality
+    const pieces = document.querySelectorAll('.piece');
+    let selectedPiece = null;
+
+    pieces.forEach(piece => {
+      piece.addEventListener('mousedown', (e) => {
+        selectedPiece = e.target;
+        selectedPiece.style.position = 'absolute';
+      });
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (selectedPiece) {
+        selectedPiece.style.left = `${e.clientX - 30}px`;
+        selectedPiece.style.top = `${e.clientY - 30}px`;
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (selectedPiece) {
+        selectedPiece.style.position = 'static';
+        selectedPiece = null;
+      }
+    });
+  </script>
+</body>
+</html>
